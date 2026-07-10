@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Volodymyr Tomash — Backend / Full-Stack TypeScript Engineer</title>
+  <meta name="description" content="Backend-focused TypeScript engineer with 4+ years of hands-on experience building production systems, real-time services, and AI integrations.">
+  <meta property="og:title" content="Volodymyr Tomash — TypeScript Engineer">
+  <meta property="og:description" content="Backend, full-stack TypeScript, real-time systems, and AI integrations.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://tomashvolodymyr.github.io/">
+  <meta property="og:image" content="https://tomashvolodymyr.github.io/assets/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://tomashvolodymyr.github.io/">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192.png">
+  <link rel="apple-touch-icon" href="assets/favicon-192.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0907;
+      --panel: #12100d;
+      --ink: #f4efe6;
+      --muted: rgba(244, 239, 230, 0.66);
+      --soft: rgba(244, 239, 230, 0.43);
+      --gold: #c6a15b;
+      --gold-light: #e3c57f;
+      --line: rgba(198, 161, 91, 0.22);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--bg); color: var(--ink); font-family: "IBM Plex Sans", sans-serif; -webkit-font-smoothing: antialiased; }
+    a { color: var(--gold); text-decoration: none; }
+    a:hover { color: var(--gold-light); }
+    button { font: inherit; }
+    ::selection { background: var(--gold); color: var(--bg); }
+
+    .wrap { width: min(1120px, calc(100% - 80px)); margin: 0 auto; }
+    .rule { height: 1px; background: var(--line); }
+    .kicker { color: var(--gold); font: 500 12px/1.4 "IBM Plex Mono", monospace; letter-spacing: .2em; text-transform: uppercase; }
+    .section { padding: 88px 0; }
+    .section-head { display: grid; grid-template-columns: 180px 1fr; gap: 36px; margin-bottom: 48px; }
+    .section-title { margin: 0; font: 600 clamp(34px, 4vw, 50px)/1.08 "Cormorant Garamond", serif; }
+    .section-intro { max-width: 64ch; margin: 0; color: var(--muted); font-size: 17px; line-height: 1.65; }
+
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 28px; padding-top: 26px; padding-bottom: 26px; }
+    .brand { display: flex; align-items: baseline; gap: 13px; color: var(--gold); }
+    .brand-mark { font: 600 30px/1 "Cormorant Garamond", serif; }
+    .brand-name { font: 500 13px/1 "IBM Plex Mono", monospace; letter-spacing: .16em; text-transform: uppercase; }
+    .nav-right { display: flex; align-items: center; gap: 20px; }
+    .nav-link { color: var(--muted); font-size: 14px; }
+    .language { display: flex; gap: 2px; padding: 2px; border: 1px solid rgba(198, 161, 91, .35); border-radius: 3px; }
+    .lang-btn { border: 0; padding: 6px 12px; background: transparent; color: rgba(198, 161, 91, .78); cursor: pointer; font: 500 11px/1.2 "IBM Plex Mono", monospace; letter-spacing: .1em; }
+    .lang-btn.active { background: var(--gold); color: var(--bg); }
+
+    .hero { padding: 104px 0 96px; }
+    .hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 64px; align-items: end; }
+    .hero h1 { max-width: 14ch; margin: 26px 0 0; font: 500 clamp(48px, 6.5vw, 84px)/1.01 "Cormorant Garamond", serif; text-wrap: balance; }
+    .hero h1 em { color: var(--gold); font-style: italic; }
+    .hero-copy { max-width: 59ch; margin: 32px 0 0; color: var(--muted); font-size: 19px; font-weight: 300; line-height: 1.65; }
+    .actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 38px; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 49px; padding: 0 25px; border: 1px solid rgba(198, 161, 91, .44); border-radius: 3px; color: var(--gold); font-size: 14px; font-weight: 500; letter-spacing: .025em; }
+    .btn:hover { border-color: var(--gold-light); }
+    .btn-primary { border-color: var(--gold); background: var(--gold); color: var(--bg); }
+    .btn-primary:hover { background: var(--gold-light); color: var(--bg); }
+    .hero-side { display: grid; gap: 16px; }
+    .portrait-wrap { position: relative; overflow: hidden; height: 355px; border: 1px solid var(--line); background: #d9d9d7; }
+    .portrait-wrap::after { position: absolute; inset: 0; border: 1px solid rgba(255, 255, 255, .08); content: ""; pointer-events: none; }
+    .portrait { width: 100%; height: 100%; display: block; object-fit: cover; object-position: 59% 46%; transform: scale(1.32); filter: saturate(.9) contrast(1.025); }
+    .availability { padding: 25px 27px; border: 1px solid var(--line); background: linear-gradient(145deg, rgba(198, 161, 91, .08), rgba(198, 161, 91, .015)); }
+    .availability-title { margin: 0 0 18px; font: 600 25px/1.1 "Cormorant Garamond", serif; }
+    .availability dl { display: grid; grid-template-columns: 92px 1fr; gap: 12px 16px; margin: 0; font-size: 14px; line-height: 1.45; }
+    .availability dt { color: var(--soft); }
+    .availability dd { margin: 0; color: var(--ink); }
+    .status { display: inline-flex; align-items: center; gap: 8px; }
+    .status::before { width: 8px; height: 8px; border-radius: 999px; background: #74b67a; box-shadow: 0 0 0 4px rgba(116, 182, 122, .12); content: ""; }
+
+    .metrics { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .metric { padding: 32px 26px; border-right: 1px solid var(--line); }
+    .metric:first-child { padding-left: 0; }
+    .metric:last-child { border-right: 0; }
+    .metric strong { display: block; color: var(--gold-light); font: 600 34px/1 "Cormorant Garamond", serif; }
+    .metric span { display: block; margin-top: 9px; color: var(--muted); font-size: 13px; line-height: 1.4; }
+
+    .projects { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; }
+    .project { display: flex; min-height: 390px; flex-direction: column; padding: 32px; border: 1px solid var(--line); background: var(--panel); color: inherit; transition: transform .2s ease, border-color .2s ease; }
+    .project:hover { transform: translateY(-3px); border-color: rgba(198, 161, 91, .55); color: inherit; }
+    .project-top { display: flex; justify-content: space-between; gap: 20px; }
+    .project-label { color: var(--gold); font: 500 11px/1.4 "IBM Plex Mono", monospace; letter-spacing: .13em; text-transform: uppercase; }
+    .project-arrow { color: var(--gold); font-size: 20px; }
+    .project h3 { margin: 42px 0 14px; font: 600 38px/1 "Cormorant Garamond", serif; }
+    .project p { margin: 0; color: var(--muted); font-size: 16px; line-height: 1.65; }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; padding-top: 30px; }
+    .chip { padding: 7px 9px; border: 1px solid rgba(198, 161, 91, .18); color: var(--soft); font: 11px/1.2 "IBM Plex Mono", monospace; }
+    .project-meta { margin-top: 24px; color: var(--gold-light); font: 12px/1.5 "IBM Plex Mono", monospace; }
+
+    .experience { display: grid; gap: 0; }
+    .experience-row { display: grid; grid-template-columns: 180px 250px 1fr; gap: 36px; padding: 34px 0; border-top: 1px solid var(--line); }
+    .experience-row:last-child { border-bottom: 1px solid var(--line); }
+    .experience-time { color: var(--gold); font: 12px/1.6 "IBM Plex Mono", monospace; }
+    .experience-role h3 { margin: 0; font: 600 25px/1.15 "Cormorant Garamond", serif; }
+    .experience-role p { margin: 8px 0 0; color: var(--soft); font-size: 14px; }
+    .experience-copy { margin: 0; color: var(--muted); font-size: 15px; line-height: 1.7; }
+
+    .focus-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 42px; }
+    .focus-item { padding-top: 22px; border-top: 1px solid var(--line); }
+    .focus-item h3 { margin: 0 0 15px; font: 600 24px/1.1 "Cormorant Garamond", serif; }
+    .focus-item p { margin: 0; color: var(--muted); font-size: 15px; line-height: 1.7; }
+
+    .contact { background: var(--ink); color: var(--bg); }
+    .contact-inner { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 50px; align-items: end; padding-top: 80px; padding-bottom: 80px; }
+    .contact h2 { max-width: 17ch; margin: 0; font: 600 clamp(38px, 5vw, 64px)/1.04 "Cormorant Garamond", serif; text-wrap: balance; }
+    .contact p { max-width: 59ch; margin: 22px 0 0; color: rgba(10, 9, 7, .66); font-size: 17px; line-height: 1.6; }
+    .contact .btn { border-color: var(--bg); background: var(--bg); color: var(--gold-light); white-space: nowrap; }
+
+    footer { display: flex; align-items: center; justify-content: space-between; gap: 28px; padding-top: 38px; padding-bottom: 44px; }
+    .footer-name { color: rgba(198, 161, 91, .72); font: 500 12px/1.4 "IBM Plex Mono", monospace; letter-spacing: .15em; text-transform: uppercase; }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 24px; font: 12px/1.4 "IBM Plex Mono", monospace; }
+
+    main[hidden] { display: none; }
+
+    @media (max-width: 860px) {
+      .wrap { width: min(100% - 44px, 1120px); }
+      .nav-link { display: none; }
+      .hero { padding: 78px 0; }
+      .hero-grid { grid-template-columns: 1fr; gap: 44px; }
+      .hero-side { max-width: 500px; }
+      .metrics { grid-template-columns: repeat(2, 1fr); }
+      .metric:nth-child(2) { border-right: 0; }
+      .metric:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+      .metric:nth-child(3) { padding-left: 0; }
+      .projects { grid-template-columns: 1fr; }
+      .experience-row { grid-template-columns: 145px 1fr; gap: 26px; }
+      .experience-copy { grid-column: 2; }
+      .section-head { grid-template-columns: 1fr; gap: 16px; }
+      .focus-grid { grid-template-columns: 1fr; gap: 28px; }
+      .contact-inner { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 560px) {
+      .wrap { width: min(100% - 32px, 1120px); }
+      .brand-name { display: none; }
+      .hero { padding: 62px 0 68px; }
+      .hero h1 { font-size: 47px; }
+      .hero-copy { font-size: 17px; }
+      .section { padding: 68px 0; }
+      .metrics { grid-template-columns: 1fr; }
+      .metric { padding: 25px 0; border-right: 0; border-bottom: 1px solid var(--line); }
+      .metric:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+      .metric:last-child { border-bottom: 0; }
+      .project { min-height: 360px; padding: 26px; }
+      .experience-row { grid-template-columns: 1fr; gap: 14px; }
+      .experience-copy { grid-column: 1; }
+      .contact-inner { padding-top: 66px; padding-bottom: 66px; }
+      footer { align-items: flex-start; flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav wrap" aria-label="Primary navigation">
+    <a class="brand" href="#top" aria-label="Volodymyr Tomash — home">
+      <span class="brand-mark">T</span>
+      <span class="brand-name">Volodymyr Tomash</span>
+    </a>
+    <div class="nav-right">
+      <a class="nav-link" href="#work" data-en="Work" data-ua="Проєкти">Work</a>
+      <a class="nav-link" href="#experience" data-en="Experience" data-ua="Досвід">Experience</a>
+      <a class="nav-link" href="#contact" data-en="Contact" data-ua="Контакти">Contact</a>
+      <div class="language" aria-label="Language">
+        <button id="btn-en" class="lang-btn active" type="button" onclick="setLang('en')">EN</button>
+        <button id="btn-ua" class="lang-btn" type="button" onclick="setLang('ua')">UA</button>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-en">
+    <section id="top" class="hero wrap">
+      <div class="hero-grid">
+        <div>
+          <div class="kicker">Backend / Full-Stack TypeScript Engineer</div>
+          <h1>I build software that works in the <em>real world.</em></h1>
+          <p class="hero-copy">Backend-focused engineer with 4+ years of hands-on experience taking production systems from architecture and implementation through deployment, operation, and support.</p>
+          <div class="actions">
+            <a class="btn btn-primary" href="https://www.linkedin.com/in/volodymyr-tomash" target="_blank" rel="noopener noreferrer">Contact on LinkedIn ↗</a>
+            <a class="btn" href="https://github.com/TomashVolodymyr" target="_blank" rel="noopener noreferrer">View GitHub ↗</a>
+          </div>
+        </div>
+        <div class="hero-side">
+          <div class="portrait-wrap"><img class="portrait" src="assets/volodymyr-tomash-original.jpg" alt="Portrait of Volodymyr Tomash" width="1365" height="2048"></div>
+          <aside class="availability" aria-label="Availability">
+            <h2 class="availability-title">Open to work</h2>
+            <dl>
+              <dt>Status</dt><dd><span class="status">Available</span></dd>
+              <dt>Roles</dt><dd>Backend / Full-Stack</dd>
+              <dt>Format</dt><dd>Remote · Full-time / Contract</dd>
+              <dt>Location</dt><dd>Ukraine · European time zones</dd>
+              <dt>English</dt><dd>B2 · Working proficiency</dd>
+            </dl>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="wrap" aria-label="Production metrics">
+      <div class="metrics">
+        <div class="metric"><strong>4+</strong><span>years of hands-on software development</span></div>
+        <div class="metric"><strong>50+</strong><span>users on internal production systems</span></div>
+        <div class="metric"><strong>~5M</strong><span>documents in a production MongoDB dataset</span></div>
+        <div class="metric"><strong>8</strong><span>connected services in a modular platform</span></div>
+      </div>
+    </section>
+
+    <section id="work" class="section wrap">
+      <div class="section-head">
+        <div class="kicker">Selected work</div>
+        <div>
+          <h2 class="section-title">Products I built and operate</h2>
+          <p class="section-intro">The source code is private because these are active products. Public case studies document the architecture, engineering decisions, delivery scope, and verified test coverage without exposing credentials or proprietary implementation.</p>
+        </div>
+      </div>
+      <div class="projects">
+        <a class="project" href="https://github.com/TomashVolodymyr/replyflow-case-study" target="_blank" rel="noopener noreferrer">
+          <div class="project-top"><span class="project-label">AI-powered SaaS · Case study</span><span class="project-arrow">↗</span></div>
+          <h3>ReplyFlow</h3>
+          <p>Multi-tenant Instagram DM automation for e-commerce. It preserves conversation context, queries product catalogs, detects purchase intent, and creates orders through a Claude Tool Use agent.</p>
+          <div class="chips"><span class="chip">TypeScript</span><span class="chip">Node.js</span><span class="chip">React</span><span class="chip">MongoDB</span><span class="chip">Socket.IO</span><span class="chip">Meta API</span></div>
+          <div class="project-meta">Live product · 589 passing automated tests</div>
+        </a>
+        <a class="project" href="https://github.com/TomashVolodymyr/strunki-case-study" target="_blank" rel="noopener noreferrer">
+          <div class="project-top"><span class="project-label">Telegram product · Case study</span><span class="project-arrow">↗</span></div>
+          <h3>Strunki</h3>
+          <p>API-first nutrition bot with onboarding, calorie and macro calculations, personalized menu planning, progress tracking, scheduled jobs, privacy flows, and Telegram Stars subscriptions.</p>
+          <div class="chips"><span class="chip">TypeScript</span><span class="chip">Fastify</span><span class="chip">PostgreSQL</span><span class="chip">Prisma</span><span class="chip">Redis</span><span class="chip">Docker</span></div>
+          <div class="project-meta">Live product · 676 passing automated tests</div>
+        </a>
+      </div>
+    </section>
+
+    <div class="wrap"><div class="rule"></div></div>
+
+    <section id="experience" class="section wrap">
+      <div class="section-head">
+        <div class="kicker">Experience</div>
+        <div>
+          <h2 class="section-title">Production ownership, end to end</h2>
+          <p class="section-intro">I am comfortable moving between product requirements, backend and frontend implementation, infrastructure, deployment, troubleshooting, and user support.</p>
+        </div>
+      </div>
+      <div class="experience">
+        <article class="experience-row">
+          <div class="experience-time">MAR 2026 — PRESENT</div>
+          <div class="experience-role"><h3>Independent Product Developer</h3><p>TomashLabs · Remote</p></div>
+          <p class="experience-copy">Building and operating ReplyFlow and Strunki: TypeScript services, React interfaces, external APIs, AI integrations, databases, automated tests, Docker, GitHub Actions, and production delivery.</p>
+        </article>
+        <article class="experience-row">
+          <div class="experience-time">SEP 2022 — MAR 2026</div>
+          <div class="experience-role"><h3>Software Engineer — Internal Systems</h3><p>Armed Forces of Ukraine</p></div>
+          <p class="experience-copy">Proposed and built an internal product from scratch, then evolved it into a modular platform of approximately eight connected services. Supported 50+ users, worked with around five million MongoDB documents, and coordinated contributions from five technical contributors while remaining hands-on.</p>
+        </article>
+        <article class="experience-row">
+          <div class="experience-time">NOV 2021 — FEB 2022</div>
+          <div class="experience-role"><h3>Junior SAPUI5 Developer</h3><p>LeverX · Kyiv</p></div>
+          <p class="experience-copy">Completed SAPUI5 onboarding and worked on data-driven UI tasks, consuming server-provided application data and rendering required states with JavaScript, HTML, CSS, SAPUI5, and Git.</p>
+        </article>
+      </div>
+    </section>
+
+    <div class="wrap"><div class="rule"></div></div>
+
+    <section class="section wrap">
+      <div class="section-head">
+        <div class="kicker">Engineering focus</div>
+        <div><h2 class="section-title">Practical systems, not isolated code</h2></div>
+      </div>
+      <div class="focus-grid">
+        <article class="focus-item"><h3>Backend & data</h3><p>TypeScript, Node.js, Express.js, Fastify, REST APIs, WebSockets, MongoDB, Mongoose, PostgreSQL, Prisma, and Redis.</p></article>
+        <article class="focus-item"><h3>Product & frontend</h3><p>React, Vite, Redux, CSS Modules, real-time dashboards, external integrations, authentication, and multi-tenant workflows.</p></article>
+        <article class="focus-item"><h3>Delivery & quality</h3><p>Docker Compose, GitHub Actions, Linux, PM2, Nginx, Vitest, Supertest, React Testing Library, production support, and troubleshooting.</p></article>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <div class="contact-inner wrap">
+        <div>
+          <h2>Looking for a backend or full-stack engineer?</h2>
+          <p>I am open to remote full-time and contract roles where I can combine backend ownership, product thinking, and hands-on delivery.</p>
+        </div>
+        <a class="btn" href="https://www.linkedin.com/in/volodymyr-tomash" target="_blank" rel="noopener noreferrer">Message me on LinkedIn ↗</a>
+      </div>
+    </section>
+  </main>
+
+  <main id="main-ua" hidden>
+    <section id="top-ua" class="hero wrap">
+      <div class="hero-grid">
+        <div>
+          <div class="kicker">Backend / Full-Stack TypeScript Engineer</div>
+          <h1>Створюю софт, що працює в <em>реальному світі.</em></h1>
+          <p class="hero-copy">Backend-орієнтований інженер із понад 4 роками практичного досвіду: від архітектури та розробки до деплою, експлуатації й підтримки продакшн-систем.</p>
+          <div class="actions">
+            <a class="btn btn-primary" href="https://www.linkedin.com/in/volodymyr-tomash" target="_blank" rel="noopener noreferrer">Написати в LinkedIn ↗</a>
+            <a class="btn" href="https://github.com/TomashVolodymyr" target="_blank" rel="noopener noreferrer">Переглянути GitHub ↗</a>
+          </div>
+        </div>
+        <div class="hero-side">
+          <div class="portrait-wrap"><img class="portrait" src="assets/volodymyr-tomash-original.jpg" alt="Володимир Томаш" width="1365" height="2048"></div>
+          <aside class="availability" aria-label="Доступність">
+            <h2 class="availability-title">Відкритий до пропозицій</h2>
+            <dl>
+              <dt>Статус</dt><dd><span class="status">Доступний</span></dd>
+              <dt>Ролі</dt><dd>Backend / Full-Stack</dd>
+              <dt>Формат</dt><dd>Remote · Full-time / Contract</dd>
+              <dt>Локація</dt><dd>Україна · європейські часові пояси</dd>
+              <dt>Англійська</dt><dd>B2 · робочий рівень</dd>
+            </dl>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="wrap" aria-label="Продакшн-метрики">
+      <div class="metrics">
+        <div class="metric"><strong>4+</strong><span>роки практичної розробки</span></div>
+        <div class="metric"><strong>50+</strong><span>користувачів внутрішніх продакшн-систем</span></div>
+        <div class="metric"><strong>~5M</strong><span>документів у продакшн MongoDB</span></div>
+        <div class="metric"><strong>8</strong><span>пов'язаних сервісів у модульній платформі</span></div>
+      </div>
+    </section>
+
+    <section id="work-ua" class="section wrap">
+      <div class="section-head">
+        <div class="kicker">Вибрані проєкти</div>
+        <div>
+          <h2 class="section-title">Продукти, які я створив і підтримую</h2>
+          <p class="section-intro">Код приватний, оскільки це активні продукти. У публічних кейсах описано архітектуру, інженерні рішення, обсяг роботи та перевірене тестове покриття — без секретів і пропрієтарної реалізації.</p>
+        </div>
+      </div>
+      <div class="projects">
+        <a class="project" href="https://github.com/TomashVolodymyr/replyflow-case-study" target="_blank" rel="noopener noreferrer">
+          <div class="project-top"><span class="project-label">AI SaaS · Публічний кейс</span><span class="project-arrow">↗</span></div>
+          <h3>ReplyFlow</h3>
+          <p>Multi-tenant автоматизація Instagram Direct для e-commerce. Зберігає контекст діалогу, шукає товари в каталозі, визначає намір покупки та створює замовлення через Claude Tool Use agent.</p>
+          <div class="chips"><span class="chip">TypeScript</span><span class="chip">Node.js</span><span class="chip">React</span><span class="chip">MongoDB</span><span class="chip">Socket.IO</span><span class="chip">Meta API</span></div>
+          <div class="project-meta">Працюючий продукт · 589 автоматизованих тестів</div>
+        </a>
+        <a class="project" href="https://github.com/TomashVolodymyr/strunki-case-study" target="_blank" rel="noopener noreferrer">
+          <div class="project-top"><span class="project-label">Telegram-продукт · Публічний кейс</span><span class="project-arrow">↗</span></div>
+          <h3>Strunki</h3>
+          <p>API-first бот із онбордингом, розрахунком калорій і макросів, персональними меню, відстеженням прогресу, планувальником задач, privacy flows і підписками через Telegram Stars.</p>
+          <div class="chips"><span class="chip">TypeScript</span><span class="chip">Fastify</span><span class="chip">PostgreSQL</span><span class="chip">Prisma</span><span class="chip">Redis</span><span class="chip">Docker</span></div>
+          <div class="project-meta">Працюючий продукт · 676 автоматизованих тестів</div>
+        </a>
+      </div>
+    </section>
+
+    <div class="wrap"><div class="rule"></div></div>
+
+    <section id="experience-ua" class="section wrap">
+      <div class="section-head">
+        <div class="kicker">Досвід</div>
+        <div>
+          <h2 class="section-title">Відповідальність за продакшн від початку до кінця</h2>
+          <p class="section-intro">Працюю з вимогами, backend і frontend реалізацією, інфраструктурою, деплоєм, пошуком несправностей і підтримкою користувачів.</p>
+        </div>
+      </div>
+      <div class="experience">
+        <article class="experience-row">
+          <div class="experience-time">БЕР 2026 — ДОТЕПЕР</div>
+          <div class="experience-role"><h3>Independent Product Developer</h3><p>TomashLabs · Remote</p></div>
+          <p class="experience-copy">Розробляю та підтримую ReplyFlow і Strunki: TypeScript-сервіси, React-інтерфейси, зовнішні API, AI-інтеграції, бази даних, автоматизовані тести, Docker, GitHub Actions і продакшн-деплой.</p>
+        </article>
+        <article class="experience-row">
+          <div class="experience-time">ВЕР 2022 — БЕР 2026</div>
+          <div class="experience-role"><h3>Software Engineer — Internal Systems</h3><p>Збройні Сили України</p></div>
+          <p class="experience-copy">Запропонував і з нуля створив внутрішній продукт, а потім розвинув його в модульну платформу приблизно з восьми пов'язаних сервісів. Підтримував понад 50 користувачів, працював із близько п'ятьма мільйонами MongoDB-документів і координував внески п'яти технічних учасників команди.</p>
+        </article>
+        <article class="experience-row">
+          <div class="experience-time">ЛИС 2021 — ЛЮТ 2022</div>
+          <div class="experience-role"><h3>Junior SAPUI5 Developer</h3><p>LeverX · Київ</p></div>
+          <p class="experience-copy">Пройшов SAPUI5-онбординг і виконував задачі з data-driven UI: отримував дані із сервера та відображав потрібні стани у в'юшках за допомогою JavaScript, HTML, CSS, SAPUI5 і Git.</p>
+        </article>
+      </div>
+    </section>
+
+    <div class="wrap"><div class="rule"></div></div>
+
+    <section class="section wrap">
+      <div class="section-head"><div class="kicker">Технічний фокус</div><div><h2 class="section-title">Практичні системи, а не ізольований код</h2></div></div>
+      <div class="focus-grid">
+        <article class="focus-item"><h3>Backend і дані</h3><p>TypeScript, Node.js, Express.js, Fastify, REST APIs, WebSockets, MongoDB, Mongoose, PostgreSQL, Prisma та Redis.</p></article>
+        <article class="focus-item"><h3>Продукт і frontend</h3><p>React, Vite, Redux, CSS Modules, real-time дашборди, зовнішні інтеграції, автентифікація та multi-tenant процеси.</p></article>
+        <article class="focus-item"><h3>Доставка і якість</h3><p>Docker Compose, GitHub Actions, Linux, PM2, Nginx, Vitest, Supertest, React Testing Library, підтримка продакшну й troubleshooting.</p></article>
+      </div>
+    </section>
+
+    <section id="contact-ua" class="contact">
+      <div class="contact-inner wrap">
+        <div>
+          <h2>Шукаєте backend або full-stack інженера?</h2>
+          <p>Відкритий до remote full-time і contract ролей, де зможу поєднати backend-відповідальність, продуктове мислення та практичну розробку.</p>
+        </div>
+        <a class="btn" href="https://www.linkedin.com/in/volodymyr-tomash" target="_blank" rel="noopener noreferrer">Написати в LinkedIn ↗</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap">
+    <div class="footer-name">Volodymyr Tomash · 2026</div>
+    <div class="footer-links">
+      <a href="https://github.com/TomashVolodymyr" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://www.linkedin.com/in/volodymyr-tomash" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="https://reply-flow.com" target="_blank" rel="noopener noreferrer">ReplyFlow</a>
+      <a href="https://t.me/strunki_menu_bot" target="_blank" rel="noopener noreferrer">Strunki</a>
+    </div>
+  </footer>
+
+  <script>
+    function setLang(lang) {
+      var isEnglish = lang === "en";
+      document.getElementById("main-en").hidden = !isEnglish;
+      document.getElementById("main-ua").hidden = isEnglish;
+      document.getElementById("btn-en").classList.toggle("active", isEnglish);
+      document.getElementById("btn-ua").classList.toggle("active", !isEnglish);
+      document.documentElement.lang = isEnglish ? "en" : "uk";
+      document.querySelectorAll("[data-en]").forEach(function (item) {
+        item.textContent = isEnglish ? item.dataset.en : item.dataset.ua;
+        var target = item.getAttribute("href");
+        if (target === "#work" || target === "#work-ua") item.setAttribute("href", isEnglish ? "#work" : "#work-ua");
+        if (target === "#experience" || target === "#experience-ua") item.setAttribute("href", isEnglish ? "#experience" : "#experience-ua");
+        if (target === "#contact" || target === "#contact-ua") item.setAttribute("href", isEnglish ? "#contact" : "#contact-ua");
+      });
+      try { localStorage.setItem("portfolio-language", lang); } catch (error) {}
+    }
+
+    (function () {
+      var saved = null;
+      try { saved = localStorage.getItem("portfolio-language"); } catch (error) {}
+      setLang(saved === "ua" ? "ua" : "en");
+    })();
+  </script>
+</body>
+</html>
